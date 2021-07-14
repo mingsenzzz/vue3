@@ -1,0 +1,21 @@
+<template>
+  <div>
+    home
+    <button @click="jumpToChild">跳转到子组件</button>
+    <p>home---------------child</p>
+    <router-view></router-view>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {};
+  },
+  methods: {
+    jumpToChild() {
+      this.$router.push("/home/child");
+    },
+  },
+};
+</script>
