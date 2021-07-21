@@ -6,6 +6,9 @@
     <br />
     <div>a: {{ numbers.a }}</div>
     <div @click="addOne">点我加加</div>
+
+    <div :class="myClass1" :style="myStyle">心情</div>
+    <div :class="myClass2">心情1</div>
   </div>
   <router-view></router-view>
 </template>
@@ -20,6 +23,15 @@ export default {
       numbers: {
         a: 1,
         b: 2,
+      },
+      myStyle: {
+        color: "#fff",
+        fontSize: "20px",
+      },
+      myClass1: ["normal", "box"],
+      myClass2: {
+        normal: true,
+        box: true,
       },
     };
   },
@@ -64,4 +76,12 @@ export default {
 </script>
 
 <style>
+.normal {
+  background-color: blue;
+}
+.box {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 20px;
+}
 </style>
