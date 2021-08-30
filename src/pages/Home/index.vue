@@ -3,7 +3,7 @@
     home
     <button @click="jumpToChild">跳转到子组件</button>
     <p>home---------------child</p>
-    <router-view></router-view>
+    <router-view :testProp="2"></router-view>
   </div>
 </template>
 
