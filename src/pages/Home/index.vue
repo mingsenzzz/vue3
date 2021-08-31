@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import "../../Proxy";
 export default {
   data() {
     return {};
