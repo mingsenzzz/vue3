@@ -2,17 +2,23 @@
   <div>名称：{{ name }}</div>
   <div>职业：{{ job.type }}</div>
   <div>个数：{{ job.salary }}</div>
-  <div>爱好：{{ hobbies }}</div>
+  <div v-for="item in hobbies" :key="item.id">爱好：{{ item.name }}</div>
   <div>测试ref 深层对象name：{{ job.innerInfo.name }}</div>
   <div>测试reactive 深层对象name:{{ job2.innerInfo.name }}</div>
   <div>计算之后的number: {{ computedNumber }}</div>
   <div>计算之后的number2: {{ computedNumber2 }}</div>
   <div @click="changeInfo">修改信息</div>
+
+  <HomeInnerChild />
 </template>
 
 <script>
-import { ref, watch, reactive, computed } from "vue";
+import HomeInnerChild from "./HomeInnerChild.vue";
+import { ref, watch, reactive, computed, provide } from "vue";
 export default {
+  components: {
+    HomeInnerChild,
+  },
   setup() {
     let name = ref("mingsen");
     const number1 = ref(1);
@@ -30,12 +36,21 @@ export default {
         name: "innerName2",
       },
     });
-    const hobbies = reactive(["抽烟", "喝酒"]);
+    const hobbies = reactive([
+      {
+        name: "抽烟 ",
+        id: 1,
+      },
+      {
+        name: "喝酒",
+        id: 2,
+      },
+    ]);
     const changeInfo = () => {
       job.type = "backEnd";
       job.innerInfo.name = "innerName11111";
       job2.value.innerInfo.name = "innerName222";
-      hobbies[0] = "烫头";
+      hobbies[0].name = "烫头";
     };
 
     const onNameChange = (newName, oldName) => {
@@ -58,6 +73,8 @@ export default {
       return number2.value + 1;
     });
     // watch(job.type, onJobChange);
+    provide("hobbies", hobbies);
+    provide("changeInfo", changeInfo);
     return {
       name,
       changeInfo,
