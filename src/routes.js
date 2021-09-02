@@ -4,6 +4,7 @@ import About from "./pages/About";
 import Model from "./pages/Model";
 import Rooms from "./pages/Rooms";
 import MeetingAppointment from "./pages/MeetingAppointment";
+import TestWWatch from "./pages/TestWatch";
 const routes = [
   {
     path: "/home",
@@ -33,6 +34,10 @@ const routes = [
   {
     path: "/rooms",
     component: Rooms,
+  },
+  {
+    path: "/testWWatch",
+    component: TestWWatch,
   },
 ];
 
